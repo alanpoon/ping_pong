@@ -8,8 +8,9 @@ import (
 )
 
 func main() {
-	log.Println("123")
-	client, err := net.Dial("tcp", "127.0.0.1:8080")
+	addr := "127.0.0.1:8080"
+	log.Printf("Trying to connect to: %v", addr)
+	client, err := net.Dial("tcp", addr)
 	if err != nil {
 		log.Fatal("%v", err)
 	}
