@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"log"
 	"net"
 )
@@ -34,13 +35,13 @@ func main() {
 					log.Printf("failed to read input: %v", err)
 					return
 				}
-				if req != "ping\n" {
+				if !bytes.Equal([]byte(req), []byte{112, 105, 110, 103, 13, 10}) { //ping
 					log.Printf("wrong data: %v: [%v]", []byte(req), req)
 					return
 
 				}
 				log.Printf("Received: %v : %q. OK", []byte(req), req)
-				rw.WriteString("pong\n")
+				rw.WriteString(string([]byte{112, 111, 110, 103, 13, 10})) //pong
 				rw.Flush()
 
 			}

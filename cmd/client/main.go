@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"log"
 	"net"
 	"time"
@@ -19,12 +20,12 @@ func main() {
 
 	for {
 		log.Print("Sending: \"ping\\n\"")
-		rw.WriteString("ping\n")
+		rw.WriteString(string([]byte{112, 105, 110, 103, 13, 10})) //ping
 		rw.Flush()
 
 		log.Print("Reaging responce")
 		resp, err := rw.ReadString('\n')
-		if err != nil || resp != "pong\n" {
+		if err != nil || !bytes.Equal([]byte(resp), []byte{112, 111, 110, 103, 13, 10}) {
 			log.Print("failed to read conn: %v", err)
 			return
 		}
