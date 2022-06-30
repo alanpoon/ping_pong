@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	addr := "127.0.0.1:8080"
+	addr := "127.0.0.1:5555"
 	log.Printf("Ping-pong server listen on %v", addr)
 	server, err := net.Listen("tcp", addr)
 	if err != nil {

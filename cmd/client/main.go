@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	addr := "127.0.0.1:8080"
+	addr := "127.0.0.1:5555"
 	log.Printf("Trying to connect to: %v", addr)
 	client, err := net.Dial("tcp", addr)
 	if err != nil {
